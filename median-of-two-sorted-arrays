@@ -1,0 +1,31 @@
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        
+        List<Integer> arr3 = new ArrayList<Integer>();
+        //perform the merge step
+        int i = 0, j=0;
+        while(i<m && j<n){
+            if(nums1[i]<nums2[j]){
+                arr3.add(nums1[i++]);
+            }else{
+                arr3.add(nums2[j++]);
+            }
+        }
+        //copy left out elements in nums1 and nums2
+        while(i<m){
+            arr3.add(nums1[i++]);
+        }
+
+        while(j<n){
+            arr3.add(nums2[j++]);
+        }
+        //find out the median 
+        int nr = m+n;
+        if(nr%2 == 1){
+            return arr3.get(nr/2);
+        }
+
+        double median = ((double)arr3.get(nr/2) + (double) arr3.get((nr/2)-1))/2;
+        return median;
