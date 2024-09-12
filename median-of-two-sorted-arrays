@@ -23,9 +23,12 @@ class Solution {
         }
         //find out the median 
         int nr = m+n;
+
+        //Odd set is there 
         if(nr%2 == 1){
             return arr3.get(nr/2);
         }
 
+        //even set is there 
         double median = ((double)arr3.get(nr/2) + (double) arr3.get((nr/2)-1))/2;
         return median;
