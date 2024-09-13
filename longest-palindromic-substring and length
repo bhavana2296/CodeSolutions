@@ -1,0 +1,36 @@
+class Solution {
+    String res = "";
+        int maxLength = 1;
+    public String longestPalindrome(String s) {
+         
+        // for every index in the string check palindromes
+        // starting from that index
+        int maxLength = 0;
+        String maxPalindrome="";
+
+        for(int i = 0; i<s.length(); i++){
+            String oddPalindrome = findPalindromeString(s, i, i);                    //Check for odd palindromes
+            String evenPalindrome = findPalindromeString(s, i, i+1);                 //check for even palindromes
+
+
+            if(oddPalindrome.length()>maxLength){                                    //assign the odd one if applicable
+                maxPalindrome = oddPalindrome;
+                maxLength = oddPalindrome.length();
+            }
+
+              if(evenPalindrome.length()>maxLength){                                  //assign the even if applicable
+                 maxPalindrome = evenPalindrome;
+                 maxLength = evenPalindrome.length();
+             }
+        }
+        return maxPalindrome;
+    }    
+
+    public String findPalindromeString(String s, int left, int right){
+        while(left>=0 && right<s.length() && s.charAt(left)== s.charAt(right)){
+            left--;
+            right++;
+        }
+        return s.substring(left+1, right);
+    } 
+}
